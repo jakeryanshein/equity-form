@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equity Agreement Form</title>
+</head>
+<body>
+    <h2>Equity Agreement Form</h2>
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>General Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="Investor">Investor</option>
+                <option value="Advisor">Advisor</option>
+            </select><br><br>
+
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required><br><br>
+
+            <label for="date_of_investment">Date of Investment/Engagement:</label>
+            <input type="date" id="date_of_investment" name="date_of_investment" required><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Equity Agreement Details</legend>
+            <label for="equity_type">Type of Equity Agreement:</label>
+            <select id="equity_type" name="equity_type" required>
+                <option value="Preferred Stock">Preferred Stock</option>
+                <option value="Convertible Note">Convertible Note</option>
+                <option value="SAFE Note">SAFE Note</option>
+                <option value="Non-Qualified Stock Options (NSOs)">Non-Qualified Stock Options (NSOs)</option>
+                <option value="Restricted Stock">Restricted Stock</option>
+                <option value="Restricted Stock Units (RSUs)">Restricted Stock Units (RSUs)</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+
+            <label for="grant_date">Date of Grant/Issuance:</label>
+            <input type="date" id="grant_date" name="grant_date" required><br><br>
+
+            <label for="number_of_shares">Number of Shares/Units Granted:</label>
+            <input type="number" id="number_of_shares" name="number_of_shares" required><br><br>
+        </fieldset>
+
+        <fieldset id="vesting_conversion_terms" style="display: none;">
+            <legend>Vesting and Conversion Terms</legend>
+            <label for="vesting_schedule">Vesting Schedule:</label>
+            <select id="vesting_schedule" name="vesting_schedule">
+                <option value="Immediate">Immediate</option>
+                <option value="Time-based">Time-based</option>
+                <option value="Milestone-based">Milestone-based</option>
+                <option value="Other">Other</option>
+            </select><br><br>
+
+            <div id="time_based_options" style="display: none;">
+                <label for="vesting_time">Time-based:</label>
+                <select id="vesting_time" name="vesting_time">
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Annually">Annually</option>
+                </select><br><br>
+            </div>
+
+            <div id="milestone_based_options" style="display: none;">
+                <label for="vesting_milestone">Milestone-based (Specify Milestones):</label>
+                <input type="text" id="vesting_milestone" name="vesting_milestone"><br><br>
+            </div>
+
+            <div id="other_vesting_options" style="display: none;">
+                <label for="other_vesting">Other (Specify):</label>
+                <input type="text" id="other_vesting" name="other_vesting"><br><br>
+            </div>
+
+            <label for="vesting_date">Vesting Commencement Date:</label>
+            <input type="date" id="vesting_date" name="vesting_date"><br><br>
+
+            <label for="cliff_period">Cliff Period:</label>
+            <input type="radio" id="cliff_yes" name="cliff_period" value="Yes">
+            <label for="cliff_yes">Yes</label>
+            <input type="radio" id="cliff_no" name="cliff_period" value="No">
+            <label for="cliff_no">No</label><br><br>
+
+            <div id="cliff_duration" style="display: none;">
+                <label for="cliff_duration_months">Specify Duration in Months:</label>
+                <input type="number" id="cliff_duration_months" name="cliff_duration_months"><br><br>
+            </div>
+
+            <label for="exercise_price">Exercise/Conversion Price:</label>
+            <input type="number" step="0.01" id="exercise_price" name="exercise_price"><br><br>
+
+            <label for="valuation_cap">Valuation Cap:</label>
+            <input type="number" step="0.01" id="valuation_cap" name="valuation_cap"><br><br>
+
+            <label for="discount_rate">Discount Rate:</label>
+            <input type="number" step="0.01" id="discount_rate" name="discount_rate" min="0" max="100"> %<br><br>
+        </fieldset>
+
+        <fieldset id="rights_preferences" style="display: none;">
+            <legend>Rights and Preferences (for Investors)</legend>
+            <label for="liquidation_preference">Liquidation Preference:</label>
+            <input type="radio" id="liquidation_yes" name="liquidation_preference" value="Yes">
+            <label for="liquidation_yes">Yes</label>
+            <input type="radio" id="liquidation_no" name="liquidation_preference" value="No">
+            <label for="liquidation_no">No</label><br><br>
+
+            <div id="liquidation_multiple" style="display: none;">
+                <label for="liquidation_multiple_value">Specify Multiple (e.g., 1x, 2x):</label>
+                <input type="number" step="0.01" id="liquidation_multiple_value" name="liquidation_multiple_value"><br><br>
+            </div>
+
+            <label for="dividend_rights">Dividend Rights:</label>
+            <input type="radio" id="dividend_yes" name="dividend_rights" value="Yes">
+            <label for="dividend_yes">Yes</label>
+            <input type="radio" id="dividend_no" name="dividend_rights" value="No">
+            <label for="dividend_no">No</label><br><br>
+
+            <div id="dividend_rate" style="display: none;">
+                <label for="dividend_rate_value">Specify Rate (e.g., 5%):</label>
+                <input type="number" step="0.01" id="dividend_rate_value" name="dividend_rate_value" min="0" max="100"> %<br><br>
+            </div>
+
+            <label for="voting_rights">Voting Rights:</label>
+            <input type="radio" id="voting_yes" name="voting_rights" value="Yes">
+            <label for="voting_yes">Yes</label>
+            <input type="radio" id="voting_no" name="voting_rights" value="No">
+            <label for="voting_no">No</label><br><br>
+
+            <label for="anti_dilution">Anti-Dilution Provisions:</label>
+            <input type="radio" id="anti_dilution_yes" name="anti_dilution" value="Yes">
+            <label for="anti_dilution_yes">Yes</label>
+            <input type="radio" id="anti_dilution_no" name="anti_dilution" value="No">
+            <label for="anti_dilution_no">No</label><br><br>
+
+            <div id="anti_dilution_type" style="display: none;">
+                <label for="anti_dilution_type_value">Specify Type (e.g., Full Ratchet, Weighted Average):</label>
+                <input type="text" id="anti_dilution_type_value" name="anti_dilution_type_value"><br><br>
+            </div>
+        </fieldset>
+
+        <fieldset id="tax_considerations" style="display: none;">
+            <legend>Tax Considerations</legend>
+            <label for="83b_election">83(b) Election Filed:</label>
+            <input type="radio" id="83b_yes" name="83b_election" value="Yes">
+            <label for="83b_yes">Yes</label>
+            <input type="radio" id="83b_no" name="83b_election" value="No">
+            <label for="83b_no">No</label>
+            <input type="radio" id="83b_na" name="83b_election" value="Not Applicable">
+            <label for="83b_na">Not Applicable</label><br><br>
+        </fieldset>
+
+        <fieldset id="transfer_liquidity" style="display: none;">
+            <legend>Transfer and Liquidity</legend>
+            <label for="transfer_restrictions">Transfer Restrictions:</label>
+            <input type="radio" id="transfer_yes" name="transfer_restrictions" value="Yes">
+            <label for="transfer_yes">Yes</label>
+            <input type="radio" id="transfer_no" name="transfer_restrictions" value="No">
+            <label for="transfer_no">No</label><br><br>
+
+            <div id="transfer_details" style="display: none;">
+                <label for="transfer_details_value">Specify Restrictions:</label>
+                <input type="text" id="transfer_details_value" name="transfer_details_value"><br><br>
+            </div>
+
+            <label for="lockup_period">Lock-Up Period (Post-IPO or Liquidity Event):</label>
+            <input type="radio" id="lockup_yes" name="lockup_period" value="Yes">
+            <label for="lockup_yes">Yes</label>
+            <input type="radio" id="lockup_no" name="lockup_period" value="No">
+            <label for="lockup_no">No</label><br><br>
+
+            <div id="lockup_duration" style="display: none;">
+                <label for="lockup_duration_value">Specify Duration in Months:</label>
+                <input type="number" id="lockup_duration_value" name="lockup_duration_value"><br><br>
+            </div>
+
+            <label for="repurchase_rights">Repurchase Rights:</label>
+            <input type="radio" id="repurchase_yes" name="repurchase_rights" value="Yes">
+            <label for="repurchase_yes">Yes</label>
+            <input type="radio" id="repurchase_no" name="repurchase_rights" value="No">
+            <label for="repurchase_no">No</label><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Additional Information</legend>
+            <label for="exercised_options">Have you exercised any options or converted any notes?</label>
+            <input type="radio" id="exercised_yes" name="exercised_options" value="Yes">
+            <label for="exercised_yes">Yes</label>
+            <input type="radio" id="exercised_no" name="exercised_options" value="No">
+            <label for="exercised_no">No</label><br><br>
+
+            <div id="exercised_details" style="display: none;">
+                <label for="exercised_details_value">Specify Details:</label>
+                <input type="text" id="exercised_details_value" name="exercised_details_value"><br><br>
+            </div>
+
+            <label for="side_agreements">Do you have any side agreements or additional terms related to your equity?</label>
+            <input type="radio" id="side_yes" name="side_agreements" value="Yes">
+            <label for="side_yes">Yes</label>
+            <input type="radio" id="side_no" name="side_agreements" value="No">
+            <label for="side_no">No</label><br><br>
+
+            <div id="side_details" style="display: none;">
+                <label for="side_details_value">Specify Details:</label>
+                <input type="text" id="side_details_value" name="side_details_value"><br><br>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Document Upload</legend>
+            <label for="document_upload">Upload Equity Agreement Documents:</label>
+            <input type="file" id="document_upload" name="document_upload"><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Summary and Additional Comments</legend>
+            <label for="comments">Please summarize any additional information or comments related to your equity agreements:</label><br>
+            <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Consent</legend>
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">I consent to the review and analysis of my submitted information.</label><br><br>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // JavaScript to handle showing/hiding fields based on selections
+        document.getElementById('equity_type').addEventListener('change', function () {
+            var selectedType = this.value;
+            document.getElementById('vesting_conversion_terms').style.display = ['Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)'].includes(selectedType) ? 'block' : 'none';
+            document.getElementById('rights_preferences').style.display = ['Preferred Stock'].includes(selectedType) ? 'block' : 'none';
+            document.getElementById('tax_considerations').style.display = ['Restricted Stock'].includes(selectedType) ? 'block' : 'none';
+            document.getElementById('transfer_liquidity').style.display = ['Preferred Stock', 'Convertible Note', 'SAFE Note', 'Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)'].includes(selectedType) ? 'block' : 'none';
+        });
+
+        document.getElementById('vesting_schedule').addEventListener('change', function () {
+            var selectedSchedule = this.value;
+            document.getElementById('time_based_options').style.display = selectedSchedule === 'Time-based' ? 'block' : 'none';
+            document.getElementById('milestone_based_options').style.display = selectedSchedule === 'Milestone-based' ? 'block' : 'none';
+            document.getElementById('other_vesting_options').style.display = selectedSchedule === 'Other' ? 'block' : 'none';
+        });
+
+        document.getElementsByName('cliff_period').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('cliff_duration').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('liquidation_preference').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('liquidation_multiple').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('dividend_rights').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('dividend_rate').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('anti_dilution').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('anti_dilution_type').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('transfer_restrictions').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('transfer_details').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('lockup_period').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('lockup_duration').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('exercised_options').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('exercised_details').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+
+        document.getElementsByName('side_agreements').forEach(function (elem) {
+            elem.addEventListener('change', function () {
+                document.getElementById('side_details').style.display = this.value === 'Yes' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
