@@ -37,6 +37,7 @@
                 <option value="Non-Qualified Stock Options (NSOs)">Non-Qualified Stock Options (NSOs)</option>
                 <option value="Restricted Stock">Restricted Stock</option>
                 <option value="Restricted Stock Units (RSUs)">Restricted Stock Units (RSUs)</option>
+                <option value="Common Stock">Common Stock</option>
                 <option value="Other">Other</option>
             </select><br><br>
 
@@ -92,7 +93,10 @@
 
             <label for="exercise_price">Exercise/Conversion Price:</label>
             <input type="number" step="0.01" id="exercise_price" name="exercise_price"><br><br>
+        </fieldset>
 
+        <fieldset id="valuation_terms" style="display: none;">
+            <legend>Valuation Terms</legend>
             <label for="valuation_cap">Valuation Cap:</label>
             <input type="number" step="0.01" id="valuation_cap" name="valuation_cap"><br><br>
 
@@ -234,10 +238,17 @@
         // JavaScript to handle showing/hiding fields based on selections
         document.getElementById('equity_type').addEventListener('change', function () {
             var selectedType = this.value;
-            document.getElementById('vesting_conversion_terms').style.display = ['Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)'].includes(selectedType) ? 'block' : 'none';
-            document.getElementById('rights_preferences').style.display = ['Preferred Stock'].includes(selectedType) ? 'block' : 'none';
-            document.getElementById('tax_considerations').style.display = ['Restricted Stock'].includes(selectedType) ? 'block' : 'none';
-            document.getElementById('transfer_liquidity').style.display = ['Preferred Stock', 'Convertible Note', 'SAFE Note', 'Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)'].includes(selectedType) ? 'block' : 'none';
+            var vestingConversionTerms = document.getElementById('vesting_conversion_terms');
+            var valuationTerms = document.getElementById('valuation_terms');
+            var rightsPreferences = document.getElementById('rights_preferences');
+            var taxConsiderations = document.getElementById('tax_considerations');
+            var transferLiquidity = document.getElementById('transfer_liquidity');
+
+            vestingConversionTerms.style.display = ['Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)'].includes(selectedType) ? 'block' : 'none';
+            valuationTerms.style.display = ['Convertible Note', 'SAFE Note'].includes(selectedType) ? 'block' : 'none';
+            rightsPreferences.style.display = ['Preferred Stock'].includes(selectedType) ? 'block' : 'none';
+            taxConsiderations.style.display = ['Restricted Stock'].includes(selectedType) ? 'block' : 'none';
+            transferLiquidity.style.display = ['Preferred Stock', 'Convertible Note', 'SAFE Note', 'Non-Qualified Stock Options (NSOs)', 'Restricted Stock', 'Restricted Stock Units (RSUs)', 'Common Stock'].includes(selectedType) ? 'block' : 'none';
         });
 
         document.getElementById('vesting_schedule').addEventListener('change', function () {
